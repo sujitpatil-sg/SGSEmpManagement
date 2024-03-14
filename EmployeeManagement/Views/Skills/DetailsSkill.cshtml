@@ -1,0 +1,57 @@
+﻿@model Emp_Models.Skill
+
+@{
+    ViewData["Title"] = "DetailsSkill";
+}
+<style>
+    dl.row.details {
+        margin: 0 auto;
+        max-width: 500px;
+        padding-top: 50px;
+        -webkit-box-shadow: 0 0 0 0 rgba(90, 113, 208, 0.11), 0 4px 16px 0 rgba(167, 175, 183, 0.33);
+    }
+
+    button.btn.color-light a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+</style>
+<div class="container">
+
+    <div class="row">
+
+        <dl class="row details p-4 mt-5">
+            <h4>Details of the skill</h4>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.SkillName)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.SkillName)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.SkillDescription)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.SkillDescription)
+            </dd>
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.CreatedDate)
+            </dd>
+            <div class="pt-3 pb-3">
+                <button type="button" class="btn btn-success color-light ">@Html.ActionLink("Update", "UpdateSkill", new {  id = Model.Id  })</button>
+                <button type="button" class="btn btn-danger color-light ">@Html.ActionLink("Delete", "DeleteSkill", new {  id = Model.Id  })</button>
+            </div>
+        </dl>
+    </div>
+</div>
+
+

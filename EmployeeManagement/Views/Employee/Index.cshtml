@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Emp_Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>All List of Employees</h4>
+<form asp-action="Index" method="get">
+    <div class="input-group mb-3" style="max-width:600px">
+        <label class="pe-3 d-inline-block padding">Find by First Name or Last Name:</label>  <input type="search" name="SearchString" class="form-control rounded" value="@ViewData["CurrentFilter"]">
+        <input type="submit" value="Search" class="btn btn-outline-primary">
+
+    </div>
+</form>
+
+<head>
+    <style>
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #customers tr:hover {
+                background-color: #ddd;
+            }
+
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #64796f;
+                color: white;
+            }
+
+        a {
+            color: white;
+        }
+    </style>
+</head>
+
+<p>
+    <a asp-action="CreateEmployee" class="btn btn-primary btn-sm">Create New</a>
+</p>
+<body>
+    <table id="customers">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["FirstNameSortParm"]">First Name</a>
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Gender
+                </th>
+                <th>
+                    Email Id
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParameter"]">Hired Date</a>
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HiredDate)
+                </td>
+                <td style="white-space: nowrap;">
+                    @Html.ActionLink("Edit", "UpdateEmployee", new { id=item.EmpId },new { @class= "btn btn-primary btn-sm"})
+                    @Html.ActionLink("Details", "EmployeeDetails", new {  id=item.EmpId  }, new { @class= "btn btn-primary btn-sm"})
+                    @Html.ActionLink("Delete", "DeleteEmployee", new {  id=item.EmpId  },new { @class= "btn btn-danger btn-sm"})
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+

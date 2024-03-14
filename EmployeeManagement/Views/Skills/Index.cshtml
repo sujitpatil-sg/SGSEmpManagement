@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Emp_Models.Skill>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #64796f;
+            color: white;
+        }
+
+    {
+        background-color: red;
+    }
+
+    b {
+        color: darkslateblue
+    }
+
+</style>
+<h4>Skill needed for job</h4>
+
+<p>
+    <a asp-action="CreateSkill" class="btn btn-primary btn-sm" }>Create New</a>
+</p>
+<div>
+    <table id="customers">
+        <thead>
+            <tr class="thead-light">
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    Skill Name
+                </th>
+                <th>
+                    Skill Description
+                </th>
+                <th>
+                    Details of skill
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SkillName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SkillDescription)
+                    </td>
+                    <td>
+                        @Html.ActionLink("SkillDetails", "DetailsSkill", new {  id=item.Id },new { @class= "btn btn-primary btn-md"})
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
